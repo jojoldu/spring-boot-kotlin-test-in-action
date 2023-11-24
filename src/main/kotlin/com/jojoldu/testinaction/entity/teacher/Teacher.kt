@@ -19,4 +19,8 @@ class Teacher(
         students.add(student)
         student.teacher = this
     }
+
+    fun countStudents(): Int {
+        return students.size
+    }
 }
