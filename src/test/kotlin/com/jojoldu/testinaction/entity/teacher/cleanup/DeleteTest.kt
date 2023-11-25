@@ -1,18 +1,19 @@
-package com.jojoldu.testinaction.entity.teacher
+package com.jojoldu.testinaction.entity.teacher.cleanup
 
+import com.jojoldu.testinaction.entity.teacher.Student
+import com.jojoldu.testinaction.entity.teacher.Teacher
+import com.jojoldu.testinaction.entity.teacher.TeacherRepository
 import jakarta.persistence.EntityManager
-import jakarta.persistence.PersistenceContext
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.transaction.annotation.Transactional
 
 @SpringBootTest
-class TeacherTest {
+class DeleteTest {
 
     @Autowired
     private lateinit var teacherRepository: TeacherRepository
@@ -29,7 +30,7 @@ class TeacherTest {
         val tables = entityManager.metamodel.entities.map { it.name }
 
         tables.forEach { table ->
-            jdbcTemplate.execute("TRUNCATE table $table")
+            jdbcTemplate.execute("delete table $table")
         }
     }
 
