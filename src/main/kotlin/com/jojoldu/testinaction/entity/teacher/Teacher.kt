@@ -9,6 +9,8 @@ class Teacher(
     val id: Long? = null,
 
     val name: String,
+
+    @Column(unique = true)
     val email: String,
 
     @OneToMany(mappedBy = "teacher", cascade = [CascadeType.ALL])

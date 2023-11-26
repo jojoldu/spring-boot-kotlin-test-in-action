@@ -1,22 +1,23 @@
-package com.jojoldu.testinaction.service
+package com.jojoldu.testinaction.service.teacher
 
-import com.jojoldu.testinaction.CleanUp
 import com.jojoldu.testinaction.entity.teacher.Student
 import com.jojoldu.testinaction.entity.teacher.Teacher
 import com.jojoldu.testinaction.entity.teacher.TeacherRepository
 import com.jojoldu.testinaction.service.teacher.NoTxTeacherService
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.*
+import org.junit.jupiter.api.MethodOrderer
+import org.junit.jupiter.api.Order
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestMethodOrder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.transaction.annotation.Transactional
 
 @TestMethodOrder(
     MethodOrderer.OrderAnnotation::class)
 @SpringBootTest
-class OriginalTest3 {
-
-    @Autowired
-    private lateinit var cleanUp: CleanUp
+@Transactional
+class TxRollbackTest2 {
 
     @Autowired
     private lateinit var teacherService: NoTxTeacherService
@@ -24,14 +25,10 @@ class OriginalTest3 {
     @Autowired
     private lateinit var teacherRepository: TeacherRepository
 
-    @AfterEach
-    fun tearDown() {
-        cleanUp.all()
-    }
-
     @Test
     @Order(1)
     fun `여러건의 teacher와 student가 일괄 저장된다`() {
+        // given
         val email = "jojoldu@gmail.com"
         val teacher1 = Teacher(name = "jojoldu", email = email)
         teacher1.addStudent(Student(name = "John", email = "John@gmail.com", teacher = teacher1))
@@ -41,6 +38,7 @@ class OriginalTest3 {
         teacher2.addStudent(Student(name = "John2", email = "John2@gmail.com", teacher = teacher2))
         teacher2.addStudent(Student(name = "Jane2", email = "Jane2@gmail.com", teacher = teacher2))
 
+        // when
         val result = teacherService.saveAllNew(listOf(teacher1, teacher2))
 
         assertThat(result).isEqualTo(2)

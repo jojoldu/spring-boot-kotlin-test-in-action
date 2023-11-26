@@ -9,6 +9,8 @@ class Student(
     val id: Long? = null,
 
     val name: String,
+
+    @Column(unique = true)
     val email: String,
 
     @ManyToOne(fetch = FetchType.LAZY)

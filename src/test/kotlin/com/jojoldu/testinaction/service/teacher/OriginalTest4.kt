@@ -1,11 +1,8 @@
-package com.jojoldu.testinaction.service
+package com.jojoldu.testinaction.service.teacher
 
 import com.jojoldu.testinaction.entity.teacher.Student
 import com.jojoldu.testinaction.entity.teacher.Teacher
 import com.jojoldu.testinaction.entity.teacher.TeacherRepository
-import com.jojoldu.testinaction.service.teacher.NoTxTeacherService
-import com.jojoldu.testinaction.service.teacher.TeacherEvent
-import com.jojoldu.testinaction.service.teacher.TeacherEventListener
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.any
