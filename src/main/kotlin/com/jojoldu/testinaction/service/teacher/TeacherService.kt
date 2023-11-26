@@ -1,4 +1,4 @@
-package com.jojoldu.testinaction.service
+package com.jojoldu.testinaction.service.teacher
 
 import com.jojoldu.testinaction.entity.teacher.Teacher
 import com.jojoldu.testinaction.entity.teacher.TeacherRepository
