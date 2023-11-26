@@ -3,7 +3,6 @@ package com.jojoldu.testinaction.service.teacher
 import com.jojoldu.testinaction.entity.teacher.Student
 import com.jojoldu.testinaction.entity.teacher.Teacher
 import com.jojoldu.testinaction.entity.teacher.TeacherRepository
-import com.jojoldu.testinaction.service.teacher.NoTxTeacherService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

@@ -8,7 +8,6 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.transaction.annotation.Transactional
 
 @TestMethodOrder(
     MethodOrderer.OrderAnnotation::class)
@@ -53,5 +52,4 @@ class OriginalTest3 {
 
         assertThat(count).isEqualTo(0)
     }
-
 }
