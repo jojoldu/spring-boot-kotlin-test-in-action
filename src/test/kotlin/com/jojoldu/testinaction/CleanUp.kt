@@ -1,20 +1,22 @@
 package com.jojoldu.testinaction
 
-import com.jojoldu.testinaction.entity.teacher.StudentRepository
-import com.jojoldu.testinaction.entity.teacher.TeacherRepository
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager
+import jakarta.persistence.EntityManager
+import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 
 @Component
 class CleanUp(
-    private val studentRepository: StudentRepository,
-    private val teacherRepository: TeacherRepository
-    ) {
+    private var jdbcTemplate: JdbcTemplate,
+    private var entityManager: EntityManager
+) {
 
     @Transactional
     fun all() {
-        teacherRepository.deleteAllInBatch()
-        studentRepository.deleteAllInBatch()
+        val tables = entityManager.metamodel.entities.map { it.name }
+
+        tables.forEach { table ->
+            jdbcTemplate.execute("TRUNCATE table $table")
+        }
     }
 }

@@ -2,9 +2,6 @@ package com.jojoldu.testinaction.service.teacher
 
 import com.jojoldu.testinaction.entity.teacher.Student
 import com.jojoldu.testinaction.entity.teacher.Teacher
-import com.jojoldu.testinaction.entity.teacher.TeacherRepository
-import com.jojoldu.testinaction.service.teacher.NoTxTeacherService
-import com.jojoldu.testinaction.service.teacher.TeacherEventListener
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.any
 import org.mockito.kotlin.verify
@@ -19,9 +16,6 @@ class TxRollbackTest4 {
 
     @Autowired
     private lateinit var teacherService: NoTxTeacherService
-
-    @Autowired
-    private lateinit var teacherRepository: TeacherRepository
 
     @MockBean
     private lateinit var teacherEventListener: TeacherEventListener

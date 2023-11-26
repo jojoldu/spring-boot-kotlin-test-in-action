@@ -32,19 +32,19 @@ class NoTxTeacherService (private val teacherRepository: TeacherRepository,
         return teacherRepository.saveAll(teachers).size
     }
 
-    @Transactional
-    fun saveAndPublish(teacher: Teacher) {
-        teacherRepository.save(teacher)
-        // 트랜잭션이 커밋되면 처리될 이벤트 발행
-        eventPublisher.publishEvent(TeacherEvent("saved teacherEmail=${teacher.email}"))
-    }
-
     fun asyncSave(teacher: Teacher): CompletableFuture<String> {
         return CompletableFuture.supplyAsync {
             teacherRepository.save(teacher)
             Thread.sleep(500)
             teacher.email
         }
+    }
+
+    @Transactional
+    fun saveAndPublish(teacher: Teacher) {
+        teacherRepository.save(teacher)
+        // 트랜잭션이 커밋되면 처리될 이벤트 발행
+        eventPublisher.publishEvent(TeacherEvent("saved teacherEmail=${teacher.email}"))
     }
 
     @Transactional

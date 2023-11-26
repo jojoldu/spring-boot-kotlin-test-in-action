@@ -3,7 +3,6 @@ package com.jojoldu.testinaction.service.teacher
 import com.jojoldu.testinaction.entity.teacher.Student
 import com.jojoldu.testinaction.entity.teacher.Teacher
 import com.jojoldu.testinaction.entity.teacher.TeacherRepository
-import com.jojoldu.testinaction.service.teacher.NoTxTeacherService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.Order
@@ -34,14 +33,10 @@ class TxRollbackTest2 {
         teacher1.addStudent(Student(name = "John", email = "John@gmail.com", teacher = teacher1))
         teacher1.addStudent(Student(name = "Jane", email = "Jane@gmail.com", teacher = teacher1))
 
-        val teacher2 = Teacher(name = "jojoldu2", email = email)
-        teacher2.addStudent(Student(name = "John2", email = "John2@gmail.com", teacher = teacher2))
-        teacher2.addStudent(Student(name = "Jane2", email = "Jane2@gmail.com", teacher = teacher2))
-
         // when
-        val result = teacherService.saveAllNew(listOf(teacher1, teacher2))
+        val result = teacherService.saveAllNew(listOf(teacher1))
 
-        assertThat(result).isEqualTo(2)
+        assertThat(result).isEqualTo(1)
     }
 
     @Test

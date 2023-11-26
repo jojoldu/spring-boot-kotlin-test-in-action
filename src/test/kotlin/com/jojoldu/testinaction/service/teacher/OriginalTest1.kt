@@ -3,7 +3,6 @@ package com.jojoldu.testinaction.service.teacher
 import com.jojoldu.testinaction.entity.teacher.Student
 import com.jojoldu.testinaction.entity.teacher.Teacher
 import com.jojoldu.testinaction.entity.teacher.TeacherRepository
-import com.jojoldu.testinaction.service.teacher.NoTxTeacherService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
@@ -14,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest
 class OriginalTest1 {
 
     @Autowired
-    private lateinit var teacherService: NoTxTeacherService
+    private lateinit var teacherService: TeacherService
 
     @Autowired
     private lateinit var teacherRepository: TeacherRepository
