@@ -202,7 +202,11 @@ class OriginalTest2 {
 
 ![code3_1](./images/code3_1.png)
 
-(2번 예제와 비슷하게, 비동기 메소드가 끝나고 데이터가 정상적으로 초기화 )
+이 테스트 코드를 실행해보면 **비동기 메소드에 대한 테스트가 끝난 후 데이터가 초기화 되지 않았음**을 알 수 있다.  
+
+![result3_1](./images/result3_1.png)
+
+반대로 명시적 초기화를 사용하는 테스트 코드로 변경해보고
 
 ```kotlin
 @TestMethodOrder(
